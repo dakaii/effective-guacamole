@@ -1,10 +1,11 @@
-FROM python:3.8-alpine
+FROM python:slim
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-RUN apk add --no-cache gcc musl-dev postgresql-dev
+RUN apt-get update
+RUN apt-get install -y libpq-dev gcc
 
 RUN mkdir /code
 COPY . /code/
