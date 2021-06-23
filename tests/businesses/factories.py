@@ -22,8 +22,7 @@ class OrganizationFactory(factory.DjangoModelFactory):
         lambda org: f'http://{org.name}@example.com'.lower())
     founded_in = factory.Faker('random_int', min=1500, max=2010)
     tour_availability = factory.Faker('random_int', min=0, max=2)
-    account_owner = factory.SubFactory(
-        UserFactory, category=AccountOwner.BUSINESS_OWNER)
+    account_owner = factory.SubFactory(UserFactory)
 
 
 class ProductFactory(factory.DjangoModelFactory):

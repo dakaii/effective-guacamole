@@ -7,11 +7,13 @@ from core.accounts.models import AccountOwner
 @pytest.mark.django_db
 def test_create_org(api_client, user_factory):
     password = 'randompass'
-    user = user_factory(password=password,
-                        category=AccountOwner.BUSINESS_OWNER)
+    user = user_factory(password=password)
 
-    data = {'username': user.username,
-            'email': user.email, 'password': password}
+    data = {
+        'username': user.username,
+        'email': user.email,
+        'password': password
+    }
     response = api_client.post(reverse('jwt-create'), data, format='json')
     access_token = response.data['access']
     api_client.credentials(HTTP_AUTHORIZATION=f'Bearer {access_token}')
@@ -19,7 +21,10 @@ def test_create_org(api_client, user_factory):
     url = reverse('business-organizations')
     data = {
         'name': 'Chebacca Inc.',
-        'representative': {'firstName': 'Luke', 'lastName': 'Skywalker'},
+        'representative': {
+            'firstName': 'Luke',
+            'lastName': 'Skywalker'
+        },
         'website': 'http://millennium@falcon.com',
         'foundedIn': 2001,
         'tourAvailability': 2
@@ -31,11 +36,13 @@ def test_create_org(api_client, user_factory):
 @pytest.mark.django_db
 def test_create_review(api_client, user_factory, product_factory):
     password = 'randompass'
-    user = user_factory(password=password,
-                        category=AccountOwner.GENERAL_USER)
+    user = user_factory(password=password)
 
-    data = {'username': user.username,
-            'email': user.email, 'password': password}
+    data = {
+        'username': user.username,
+        'email': user.email,
+        'password': password
+    }
     response = api_client.post(reverse('jwt-create'), data, format='json')
     access_token = response.data['access']
     api_client.credentials(HTTP_AUTHORIZATION=f'Bearer {access_token}')

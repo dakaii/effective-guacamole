@@ -18,8 +18,7 @@ from django.urls import path, include
 urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('admin/', admin.site.urls),
-    path('api/', include('djoser.urls')),
-    path('api/', include('djoser.urls.jwt')),
+    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     path('api/', include('core.accounts.urls')),
     path('api/', include('core.businesses.urls')),
 ]

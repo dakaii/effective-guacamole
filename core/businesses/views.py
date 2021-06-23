@@ -1,4 +1,3 @@
-from core.accounts.permissions import IsBusinessOwner, IsGeneralUser
 from core.businesses.models import Organization, Picture, Product, Review
 from core.businesses.serializers import (OrganizationDetailSerializer,
                                          PictureSerializer, ProductSerializer,
@@ -23,7 +22,7 @@ from .serializers import OrganizationSerializer
 
 
 class BusinessOrganizationView(views.APIView):
-    permission_classes = [IsBusinessOwner]
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = OrganizationSerializer
 
     def post(self, request, *args, **kwargs):
@@ -64,17 +63,17 @@ class BusinessOrganizationView(views.APIView):
 class OrganizationListView(generics.ListAPIView):
     queryset = Organization.objects.all()
     serializer_class = OrganizationSerializer
-    permission_classes = [IsGeneralUser]
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class OrganizationDetailView(generics.RetrieveAPIView):
     queryset = Organization.objects.all()
     serializer_class = OrganizationDetailSerializer
-    permission_classes = [IsGeneralUser]
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class BusinessProductViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsBusinessOwner]
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = ProductSerializer
 
     def get_queryset(self):
@@ -113,17 +112,17 @@ class BusinessProductViewSet(viewsets.ModelViewSet):
 class ProductListView(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    permission_classes = [IsGeneralUser]
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class ProductDetailView(generics.RetrieveAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    permission_classes = [IsGeneralUser]
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class BusinessPictureViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsBusinessOwner]
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = PictureSerializer
 
     def get_queryset(self):
@@ -148,19 +147,19 @@ class BusinessPictureViewSet(viewsets.ModelViewSet):
 class PictureListView(generics.ListAPIView):
     queryset = Picture.objects.all()
     serializer_class = PictureSerializer
-    permission_classes = [IsGeneralUser]
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class PictureDetailView(generics.RetrieveAPIView):
     queryset = Picture.objects.all()
     serializer_class = PictureSerializer
-    permission_classes = [IsGeneralUser]
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class ReviewListView(generics.ListCreateAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
-    permission_classes = [IsGeneralUser]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         user = self.request.user
@@ -178,7 +177,7 @@ class ReviewListView(generics.ListCreateAPIView):
 class ReviewDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
-    permission_classes = [IsGeneralUser]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         user = self.request.user

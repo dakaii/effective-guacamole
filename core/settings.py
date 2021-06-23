@@ -31,7 +31,7 @@ ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", default='127.0.0.1').split(' ')
 CORS_ORIGIN_ALLOW_ALL = True
 
 AUTH_USER_MODEL = 'accounts.AccountOwner'
-# Application definition
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -40,9 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',
+    'oauth2_provider',
     'rest_framework',
-    'djoser',
+    'corsheaders',
     'core.accounts',
     'core.businesses',
 ]
@@ -74,23 +74,12 @@ DATABASES = {
 
 ROOT_URLCONF = 'core.urls'
 
-
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=2),
-    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=15),
-}
-
-DJOSER = {
-    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
-    'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
-}
-
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
     ],
     # https://github.com/vbabiy/djangorestframework-camel-case
     'DEFAULT_RENDERER_CLASSES': (
