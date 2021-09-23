@@ -1,4 +1,4 @@
-from core.accounts.views import SocialSignUp
+from core.accounts.controllers.social_signup import SocialSignUp
 from django.urls import path
 
 urlpatterns = [

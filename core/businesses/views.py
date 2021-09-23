@@ -129,8 +129,8 @@ class BusinessPictureViewSet(viewsets.ModelViewSet):
         user = self.request.user
         try:
             organization = user.organization
-        except Organization.DoesNotExist as e:
-            raise NotFound(detail={'message': str(e)})
+        except Organization.DoesNotExist as error:
+            raise NotFound(detail={'message': str(error)})
 
         product_id_list = organization.products.values_list('pk', flat=True)
         return Picture.objects.filter(product_id__in=product_id_list)

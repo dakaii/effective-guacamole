@@ -24,7 +24,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get("SECRET_KEY", default='secret')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", default=0)
+DEBUG = os.environ.get("DEBUG", default=1)
+DEBUG_PROPAGATE_EXCEPTIONS = DEBUG
 
 # SECURITY WARNING set appropriate allowed hosts with the config file.
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", default='127.0.0.1').split(' ')
