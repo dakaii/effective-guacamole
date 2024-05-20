@@ -12,4 +12,4 @@ COPY . /code/
 WORKDIR /code
 RUN pip install -r requirements.txt
 
-CMD gunicorn -b :$PORT core.wsgi
+CMD hypercorn -b :$PORT core.asgi
