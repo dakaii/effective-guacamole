@@ -11,4 +11,4 @@ ptvsd==4.3.2
 pytest==8.2.1
 pytest-django==4.8.0
 pytest-factoryboy==2.7.0
-strawberry-graphql[debug-server]==0.229.1
+strawberry-graphql-django==0.40.0

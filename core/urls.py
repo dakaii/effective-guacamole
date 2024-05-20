@@ -18,6 +18,8 @@ from django.urls import include, path
 urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('admin/', admin.site.urls),
-    path('api/', include('core.accounts.urls')),
-    path('api/', include('core.businesses.urls')),
+    path('graphql', AsyncGraphQLView.as_view(schema=schema)),
+
+    # path('api/', include('core.accounts.urls')),
+    # path('api/', include('core.businesses.urls')),
 ]
